@@ -68,7 +68,7 @@ with open('/etc/fstab','r+') as f:
 print(BLUE+"Securing Server...")
 run(["apt-get --assume-yes install ufw",
 	 "ufw allow OpenSSH",
-	 "ufw allow 17999",
+	 "ufw allow 19777",
 	 "ufw default deny incoming",
 	 "ufw default allow outgoing",
 	 "ufw --force enable"])
@@ -173,10 +173,10 @@ print(BLUE+"Xuma Masternode Started...")
 print(YELLOW+"""
 Xuma Masternode Setup Finished!
 Xuma Masternode Data:
-IP: {0}:17999
+IP: {0}:19777
 Private key: {1}
 Transaction ID: {2}
 Transaction index: {3}
 --------------------------------------------------
-{4} {0}:17999 {1} {2} {3}
+{4} {0}:19777 {1} {2} {3}
 """.format(this_ip,priv_key,txid,tx_index,socket.gethostname().split('.')[0])+DEFAULT_COLOR)
