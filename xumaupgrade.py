@@ -62,18 +62,18 @@ run(["apt-get install git automake build-essential libtool autotools-dev autocon
 if os.path.exists('/root/xuma-core'): print(BLUE+"Xuma Files Exist!")
 else:
     print(BLUE+"Downloading Needed Files...")
-    run("cd /root/ && git clone https://github.com/xumacoin/xuma-core.git")
+    run(["git clone https://github.com/xumacoin/xuma-core.git"])
 
 print(BLUE+"Stopping Xuma Masternode...")
 os.system('su - xuma -c "xuma-cli stop &> /dev/null" ')
 os.system('systemctl stop xuma')
 
-print(BLUE+"Downloading & Compiling Xuma...")
+print(BLUE+"Compiling New Xuma Version...")
 print(YELLOW+"This will take approx 15-20 mins. Please be patient!")
 run(["cd /root/xuma-core/ && git reset --hard",
         "cd /root/xuma-core/ && git fetch",
         "cd /root/xuma-core && git checkout 1.1.0",
-    "cd /root/xuma-core && make all",
+        "cd /root/xuma-core && make all",
         "cd /root/xuma-core && make install",
         "rm -rf /home/xuma/xuma-core",
         "cp -r /root/xuma-core /home/xuma",
