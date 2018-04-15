@@ -52,6 +52,24 @@ run(["sudo apt-get update -y",
         'sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o DPkg::options::="--force-confdef" -o DPkg::options::="--force-confold"  install grub-pc',
         "apt-get upgrade -y"])
 
+print(BLUE+"Creating Swap and Securing Server...")
+run(["fallocate -l 4G /swap",
+         "chmod 600 /swap",
+         "mkswap /swap",
+         "swapon /swap"])
+with open('/etc/fstab','r+') as f:
+        line="/swap   none    swap    sw    0   0 \n"
+        lines = f.readlines()
+        if lines[-1]!=line:
+                f.write(line)
+
+run(["apt-get --assume-yes install ufw",
+         "ufw allow OpenSSH",
+         "ufw allow 19777",
+         "ufw default deny incoming",
+         "ufw default allow outgoing",
+         "ufw --force enable"])
+
 print(BLUE+"Installing Build Dependencies...")
 run(["apt-get install git automake build-essential libtool autotools-dev autoconf pkg-config libssl-dev nano -y",
          "apt-get install libboost-all-dev software-properties-common -y",
