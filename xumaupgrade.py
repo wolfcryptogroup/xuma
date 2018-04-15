@@ -113,8 +113,7 @@ os.system('systemctl enable xuma')
 os.system('systemctl start xuma')
 os.system('systemctl --no-pager status xuma')
 
-print(YELLOW+"Xuma Masternode Upgrade Finished! Your masternode version will bi displayed below.  If it displays anything other than 'Xuma Core RPC client version 1.1.0
-' something has gone wrong!.")
+print(YELLOW+"Xuma Masternode Upgrade Finished! Your masternode version will bi displayed below.  If it displays anything other than 'Xuma Core RPC client version 1.1.0 something has gone wrong!.")
 time.sleep(3)
 os.system('su - xuma -c "xuma-cli | grep 1.1.0" ')
 print(DEFAULT_COLOUR+"All done!")
