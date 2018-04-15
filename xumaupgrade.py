@@ -117,3 +117,4 @@ print(YELLOW+"Xuma Masternode Upgrade Finished! Your masternode version will bi 
 ' something has gone wrong!.")
 time.sleep(3)
 os.system('su - xuma -c "xuma-cli | grep 1.1.0" ')
+print(DEFAULT_COLOUR+"All done!")
