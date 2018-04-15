@@ -75,8 +75,7 @@ run(["cd /root/xuma-core/ && git reset --hard",
         "cd /root/xuma-core && git checkout 1.1.0",
         "cd /root/xuma-core && ./autogen.sh",
         "cd /root/xuma-core && ./configure",
-        "cd /root/xuma-core && make all",
-        "cd /root/xuma-core && make install",
+        "cd /root/xuma-core && make all install",
         "rm -rf /home/xuma/xuma-core",
         "cp -r /root/xuma-core /home/xuma",
         "chown xuma:xuma -R /home/xuma/xuma-core"])
@@ -116,5 +115,7 @@ os.system('systemctl start xuma')
 os.system('systemctl --no-pager status xuma')
 
 print(YELLOW+"Xuma Masternode Upgrade Finished! Your Xuma Masternode is Version 1.1.0.")
+time.sleep(3)
 os.system('su - xuma -c "xuma-cli masternode status" ')
+time.sleep(3)
 os.system('su - xuma -c "xuma-cli | grep 1.1.0" ')
