@@ -75,13 +75,12 @@ run(["git clone https://github.com/xumacoin/xuma-core.git"])
         
 print(BLUE+"Compiling New Xuma Version...")
 print(YELLOW+"This will take approx 15-20 mins. Please be patient!")
-run(["cd /root/xuma-core/ && git reset --hard",
-        "cd xuma-core/ && git fetch",
-        "cd xuma-core/ && git checkout 1.1.0",
-        "cd xuma-core/ && make all",
-        "cd xuma-core/ && make install",
-        "cp -r /root/xuma-core /home/xuma/",
-        "chown xuma:xuma -R /home/xuma/xuma-core"])
+run(["git clone https://github.com/xumacoin/xuma-core.git",
+     "cd xuma-core && ./autogen.sh",
+     "cd xuma-core && ./configure",
+     "cd xuma-core && make all install",
+     "cp -r /root/xuma-core /home/xuma",
+     "chown xuma:xuma -R /home/xuma/xuma-core"])
 
 if os.path.isfile('/lib/systemd/system/xuma.service'): print(BLUE+"Xuma Service File is Already Setup!")
 else:
