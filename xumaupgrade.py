@@ -67,7 +67,7 @@ else:
 print(BLUE+"Stopping Xuma Masternode...")
 os.system('su - xuma -c "xuma-cli stop &> /dev/null" ')
 os.system('systemctl stop xuma')
-run("rm -f /usr/local/bin/xuma*")
+run(["rm -f /usr/local/bin/xuma*"])
         
 print(BLUE+"Compiling New Xuma Version...")
 print(YELLOW+"This will take approx 15-20 mins. Please be patient!")
