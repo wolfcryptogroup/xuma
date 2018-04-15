@@ -116,6 +116,4 @@ os.system('systemctl --no-pager status xuma')
 
 print(YELLOW+"Xuma Masternode Upgrade Finished! Your Xuma Masternode is Version 1.1.0.")
 time.sleep(3)
-os.system('su - xuma -c "xuma-cli masternode status" ')
-time.sleep(3)
 os.system('su - xuma -c "xuma-cli | grep 1.1.0" ')
