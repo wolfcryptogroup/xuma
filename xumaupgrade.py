@@ -78,7 +78,6 @@ run(["rm -rf /home/xuma/xuma-core/mainnet/",
         "cd /root/xuma-core/ && ./autogen.sh",
         "cd /root/xuma-core/ && ./configure",
         "cd /root/xuma-core/ && make all install",
-        
         "cp -r /root/xuma-core /home/xuma/",
         "chown xuma:xuma -R /home/xuma/xuma-core"])
 
