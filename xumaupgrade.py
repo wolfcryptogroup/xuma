@@ -62,7 +62,7 @@ run(["apt-get install git automake build-essential libtool autotools-dev autocon
 if os.path.exists('/root/xuma-core'): print(BLUE+"Xuma Files Exist!")
 else:
     print(BLUE+"Downloading Needed Files...")
-    run("git clone https://github.com/xumacoin/xuma-core.git")
+    run("cd /root/ && git clone https://github.com/xumacoin/xuma-core.git")
 
 print(BLUE+"Stopping Xuma Masternode...")
 os.system('su - xuma -c "xuma-cli stop &> /dev/null" ')
