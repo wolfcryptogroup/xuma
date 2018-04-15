@@ -70,10 +70,8 @@ run(["rm -rf /root/xuma-core/mainnet/"
         "rm -rf /home/xuma/xuma-core/"
         "rm -f /usr/local/bin/xuma*",])
 
-if os.path.exists('/root/xuma-core'): print(BLUE+"Xuma Files Exist!")
-else:
-    print(BLUE+"Downloading Needed Files...")
-    run(["cd /root && git clone https://github.com/xumacoin/xuma-core.git"])
+print(BLUE+"Downloading Required Files...")
+run(["git clone https://github.com/xumacoin/xuma-core.git"])
         
 print(BLUE+"Compiling New Xuma Version...")
 print(YELLOW+"This will take approx 15-20 mins. Please be patient!")
