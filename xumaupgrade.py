@@ -59,27 +59,29 @@ run(["apt-get install git automake build-essential libtool autotools-dev autocon
          "apt-get update -y",
          "apt-get install libdb4.8-dev libdb4.8++-dev libminiupnpc-dev -y"])
 
-if os.path.exists('/root/xuma-core'): print(BLUE+"Xuma Files Exist!")
-else:
-    print(BLUE+"Downloading Needed Files...")
-    run(["cd /root && git clone https://github.com/xumacoin/xuma-core.git"])
-
 print(BLUE+"Stopping Xuma Masternode...")
 os.system('su - xuma -c "xuma-cli stop &> /dev/null" ')
 os.system('systemctl stop xuma')
 
 print(BLUE+"Cleaning Up Old Xuma Files...")
-run(["rm -rf /home/xuma/xuma-core/mainnet/",
+run(["rm -rf /root/xuma-core/mainnet/"
+        "rm -rf /root/xuma-core/"
+        "rm -rf /home/xuma/xuma-core/mainnet/",
         "rm -rf /home/xuma/xuma-core/"
         "rm -f /usr/local/bin/xuma*",])
 
+if os.path.exists('/root/xuma-core'): print(BLUE+"Xuma Files Exist!")
+else:
+    print(BLUE+"Downloading Needed Files...")
+    run(["cd /root && git clone https://github.com/xumacoin/xuma-core.git"])
+        
 print(BLUE+"Compiling New Xuma Version...")
 print(YELLOW+"This will take approx 15-20 mins. Please be patient!")
 run(["cd /root/xuma-core/ && git reset --hard",
-        "cd /root/xuma-core/ && git fetch",
-        "cd /root/xuma-core/ && git checkout 1.1.0",
-        "cd /root/xuma-core/ && make all",
-        "cd /root/xuma-core/ && make install",
+        "cd xuma-core/ && git fetch",
+        "cd xuma-core/ && git checkout 1.1.0",
+        "cd xuma-core/ && make all",
+        "cd xuma-core/ && make install",
         "cp -r /root/xuma-core /home/xuma/",
         "chown xuma:xuma -R /home/xuma/xuma-core"])
 
