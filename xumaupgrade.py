@@ -64,20 +64,22 @@ else:
     print(BLUE+"Downloading Needed Files...")
     run(["cd /root && git clone https://github.com/xumacoin/xuma-core.git"])
 
+print(BLUE+"Stopping Xuma Masternode...")
+os.system('su - xuma -c "xuma-cli stop" ')
+os.system('systemctl stop xuma')
+        
 print(BLUE+"Compiling New Xuma Version...")
 print(YELLOW+"This will take approx 15-20 mins. Please be patient!")
 run(["cd /root/xuma-core/ && git reset --hard",
         "cd /root/xuma-core/ && git fetch",
         "cd /root/xuma-core && git checkout 1.1.0",
+        "cd /root/xuma-core && ./autogen.sh",
+        "cd /root/xuma-core && ./configure",
         "cd /root/xuma-core && make all",
         "cd /root/xuma-core && make install",
         "rm -rf /home/xuma/xuma-core",
         "cp -r /root/xuma-core /home/xuma",
         "chown xuma:xuma -R /home/xuma/xuma-core"])
-
-print(BLUE+"Stopping Xuma Masternode...")
-os.system('su - xuma -c "xuma-cli stop" ')
-os.system('systemctl stop xuma')
 
 if os.path.isfile('/lib/systemd/system/xuma.service'): print(BLUE+"Xuma Service File is Already Setup!")
 else:
