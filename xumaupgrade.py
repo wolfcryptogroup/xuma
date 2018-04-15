@@ -67,17 +67,17 @@ else:
 print(BLUE+"Stopping Xuma Masternode...")
 os.system('su - xuma -c "xuma-cli stop &> /dev/null" ')
 os.system('systemctl stop xuma')
-run(["rm -f /usr/local/bin/xuma*"])
-        
+
+print(BLUE+"Cleaning Up Old Xuma Files...")
+run(["rm -rf /home/xuma/xuma-core/mainnet/",
+        "rm -rf /home/xuma/xuma-core/"
+        "rm -f /usr/local/bin/xuma*",])
+
 print(BLUE+"Compiling New Xuma Version...")
 print(YELLOW+"This will take approx 15-20 mins. Please be patient!")
-run(["rm -rf /home/xuma/xuma-core/mainnet/",
-        "rm -rf /home/xuma/xuma-core/",
-        "cd /root/xuma-core/ && git reset --hard",
+run(["cd /root/xuma-core/ && git reset --hard",
         "cd /root/xuma-core/ && git fetch",
         "cd /root/xuma-core/ && git checkout 1.1.0",
-        "cd /root/xuma-core/ && ./autogen.sh",
-        "cd /root/xuma-core/ && ./configure",
         "cd /root/xuma-core/ && make all",
         "cd /root/xuma-core/ && make install",
         "cp -r /root/xuma-core /home/xuma/",
