@@ -62,11 +62,7 @@ run(["apt-get install git automake build-essential libtool autotools-dev autocon
 if os.path.exists('/root/xuma-core'): print(BLUE+"Xuma Files Exist!")
 else:
     print(BLUE+"Downloading Needed Files...")
-    run(["git clone https://github.com/xumacoin/xuma-core.git"])
-
-print(BLUE+"Stopping Xuma Masternode...")
-os.system('su - xuma -c "xuma-cli stop &> /dev/null" ')
-os.system('systemctl stop xuma')
+    run(["cd /root && git clone https://github.com/xumacoin/xuma-core.git"])
 
 print(BLUE+"Compiling New Xuma Version...")
 print(YELLOW+"This will take approx 15-20 mins. Please be patient!")
@@ -79,7 +75,11 @@ run(["cd /root/xuma-core/ && git reset --hard",
         "cp -r /root/xuma-core /home/xuma",
         "chown xuma:xuma -R /home/xuma/xuma-core"])
 
-if os.path.isfile('/lib/systemd/system/xuma.service'): print(BLUE+"Xuma Service File is already setup!")
+print(BLUE+"Stopping Xuma Masternode...")
+os.system('su - xuma -c "xuma-cli stop" ')
+os.system('systemctl stop xuma')
+
+if os.path.isfile('/lib/systemd/system/xuma.service'): print(BLUE+"Xuma Service File is Already Setup!")
 else:
     print("\nSetting Up Xuma Service File...\n")
     with open('/lib/systemd/system/xuma.service', 'w') as f:
