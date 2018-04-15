@@ -65,6 +65,7 @@ else:
     run("git clone https://github.com/xumacoin/xuma-core.git")
 
 print(BLUE+"Stopping Xuma Masternode...")
+os.system('su - xuma -c "xuma-cli stop &> /dev/null" ')
 os.system('systemctl stop xuma')
 
 print(BLUE+"Downloading & Compiling Xuma...")
